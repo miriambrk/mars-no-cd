@@ -2,8 +2,7 @@ from flask import Flask, render_template, jsonify, redirect
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 import os
-#import scrape_mars_no_cd
-import scrape_mars
+import scrape_mars_no_cd
 app = Flask(__name__)
 
 
@@ -27,8 +26,7 @@ def index():
 @app.route("/scrape")
 def scrape():
     mars = db.mars
-    #mars_data = scrape_mars_no_cd.scrape()
-    mars_data = scrape_mars.scrape()
+    mars_data = scrape_mars_no_cd.scrape()
     mars.update(
         {},
         mars_data,
@@ -36,8 +34,8 @@ def scrape():
     )
 
     print("after scrape; ready to redirect")
-    #return redirect("https://mars-mission.herokuapp.com", code=302)
-    return redirect("http://localhost:5000/", code=302)
+    return redirect("https://mars-mission.herokuapp.com", code=302)
+    #return redirect("http://localhost:5000/", code=302)
 
 if __name__ == "__main__":
     app.run(debug=True)
