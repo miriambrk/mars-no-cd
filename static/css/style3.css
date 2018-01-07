@@ -1,1 +1,30 @@
+.box {
+  height: 300px;
+  padding: 10px;
+  margin: 10px;
+  color: black;
+  background: white;
+}
 
+.box-x-long {
+  height: 800px;
+  padding: 0px;
+  padding-left: 15px;
+  margin: 30px;
+  color: green;
+  background: white;
+  border-style: solid;
+  border-width: 1px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: purple;
+}
+
+#h3 {
+  margin-left: 30px;
+}
+
+tr, th, td {
+  padding-left : 10px;
+}
