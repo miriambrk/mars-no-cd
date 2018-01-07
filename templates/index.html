@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/style3.css') }}">
 
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-default btn-lg" href="/scrape" role="button">Scrape New Mars Data</a></p>
+    </div>
+
+    <div class="row">
+      <hr id="hr">
+    </div>
+
+    <!-- Mars Dictionary -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Latest Mars News</h2>
+        <h4 class="heading">{{mars.news_title}} </h4>
+        <p> {{mars.news_para}} </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Featured Mars Image</h2>
+        <h4 class="heading">{{mars.featured_img_title}} </h4>
+        <img src = {{mars.featured_img_url}} alt={{mars.featured_img_title}} width="80%" class="img-responsive">
+      </div>
+
+      <div class="col-md-4">
+        <div class="box-x-long responsive">
+
+          <!-- temperature -->
+          <div class="box responsive">
+            <h3>Current Weather on Mars</h3>
+            <p class="responsive"> {{mars.weather}} </p>
+          </div>
+
+        <!-- fact table -->
+          <div class="box responsive">
+            <h3>Mars Facts</h3>
+              <!-- use the actual HTML -->
+              {{mars.mars_facts|safe}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mars Hemispheres -->
+    <h2>Mars Hemispheres</h2>
+    <div class="row">
+      {% for hem in mars.hemispheres %}
+        <div class="col-md-6">
+          <div class="box-x-long">
+            <h4>{{ hem.title }}</h4>
+            <img src = {{hem.img_url}} alt={{hem.title}} width="80%" class="img-responsive">
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+
+  </div>
+  <br>
+  <br>
+  <hr>
+
+  <div>
+    <p>Sources:</p>
+    <ul>
+      <li><a href="https://mars.nasa.gov/news" target="_blank"> NASA Mars News</a></li>
+      <li><a href="https://www.jpl.nasa.gov" target="_blank"> JPL Mars Space Images</a></li>
+      <li><a href="https://twitter.com/marswxreport?lang=en" target="_blank"> Mars Weather</a></li>
+      <li><a href="https://space-facts.com/mars/" target="_blank"> Mars Facts</a></li>
+      <li><a href="https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars" target="_blank">Mars Hemispheres</a></li>
+    </ul>
+  </div>
+
+
+
+</body>
+</html>
