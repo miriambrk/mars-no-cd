@@ -11,9 +11,9 @@ def scrape():
 
     
     
-    options = webdriver.ChromeOptions()
-    options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
-    driver = webdriver.Chrome(chrome_options=options)
+#     options = webdriver.ChromeOptions()
+#     options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
+#     driver = webdriver.Chrome(chrome_options=options)
     
     
 #     from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -22,8 +22,14 @@ def scrape():
 #     opts = ChromeOptions()
 #     opts.binary_location = chrome_bin
 #     self.selenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
+
+
+
+    executable_path = {"executable_path": "/app/.apt/usr/bin/google-chrome-stable"}
+    browser = Browser("chrome", **executable_path, headless=True)
+
     
-    browser = Browser('chrome', headless=True)
+    #browser = Browser('chrome', headless=True)
 
     #store all the scraped data in a dictionary
     mars_dictionary = {}
