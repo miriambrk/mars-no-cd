@@ -2,6 +2,7 @@
 import time
 import pandas as pd
 from splinter import Browser
+from selenium import webdriver
 from bs4 import BeautifulSoup as bs
 import requests
 import os
@@ -17,6 +18,7 @@ def scrape():
     
     from selenium.webdriver.chrome.options import Options as ChromeOptions
     chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    print("chrome_bin: ", chrome_bin)
     opts = ChromeOptions()
     opts.binary_location = chrome_bin
     self.selenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
