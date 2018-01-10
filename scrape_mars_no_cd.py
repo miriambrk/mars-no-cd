@@ -23,9 +23,10 @@ def scrape():
 #     opts.binary_location = chrome_bin
 #     self.selenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
 
+    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    print("chrome_bin: ", chrome_bin)
 
-
-    executable_path = {"executable_path": "/app/.apt/usr/bin/google-chrome-stable"}
+    executable_path = {"executable_path": chrome_bin}
     browser = Browser("chrome", **executable_path, headless=True)
 
     
@@ -39,6 +40,8 @@ def scrape():
 
     # URL of NASA Mars News website
     url = 'https://mars.nasa.gov/news/'
+    
+    print("getting ready to visit the first url")
 
     browser.visit(url)
 
