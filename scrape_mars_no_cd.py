@@ -8,7 +8,7 @@ import os
 
 def scrape():
 
-    browser = Browser('firefox', headless=False)
+    browser = Browser('chrome', headless=True)
 
     #store all the scraped data in a dictionary
     mars_dictionary = {}
