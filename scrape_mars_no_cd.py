@@ -9,6 +9,10 @@ import os
 def scrape():
 
     browser = Browser('chrome', headless=True)
+    
+    options = ChromeOptions()
+    options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
+    driver = webdriver.Chrome(chrome_options=options)
 
     #store all the scraped data in a dictionary
     mars_dictionary = {}
