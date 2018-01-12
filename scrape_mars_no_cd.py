@@ -23,13 +23,24 @@ def scrape():
 #     opts.binary_location = chrome_bin
 #     self.selenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
 
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
     chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-    print("chrome_bin: ", chrome_bin)
+    print("chrome_bin1: ", chrome_bin)
+    opts = ChromeOptions()
+    opts.binary_location = chrome_bin
+    self.driver = webdriver.Chrome(chrome_options=chrome_options)
+
+    #chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    print("chrome_bin2: ", chrome_bin)
     
     
 
     executable_path = {"executable_path": chrome_bin}
-    browser = Browser("chrome", **executable_path, headless=True, no-sandbox=True)
+    browser = Browser("chrome", **executable_path, headless=True)
 
     
     #browser = Browser('chrome', headless=True)
@@ -188,7 +199,7 @@ def scrape():
     soup = bs(html, 'html.parser')
 
     # results are returned as an iterable list
-    hemispheres = soup.find_all('a', class_="item")
+    hemispheres = soup.find_all('a', class_="itemLink")
 
     # Loop through returned results
 
