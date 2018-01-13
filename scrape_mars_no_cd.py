@@ -16,29 +16,29 @@ def scrape():
     
     
     
-options = webdriver.ChromeOptions()
-options.binary_location = os.environ['GOOGLE_CHROME_BIN']
+    options = webdriver.ChromeOptions()
+    options.binary_location = os.environ['GOOGLE_CHROME_BIN']
 
-options.add_argument('--headless')
+    options.add_argument('--headless')
 
 
-print("before wd")
+    print("before wd")
 
-wd = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=options)
+    wd = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=options)
 
-print("getting ready to visit the first url")
-wd.get('https://mars.nasa.gov/news/')
+    print("getting ready to visit the first url")
+    wd.get('https://mars.nasa.gov/news/')
 
-# Wait for the dynamically loaded elements to show up
-WebDriverWait(wd, 1).until(
-    EC.visibility_of_element_located((By.CLASS_NAME, "content_title")))
+    # Wait for the dynamically loaded elements to show up
+    WebDriverWait(wd, 1).until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "content_title")))
 
-# And grab the page HTML source
-response = wd.page_source
-wd.quit()
+    # And grab the page HTML source
+    response = wd.page_source
+    wd.quit()
 
-soup = bs(response, "lxml")
-print(soup.prettify())
+    soup = bs(response, "lxml")
+    print(soup.prettify())
 
     
     
