@@ -24,8 +24,8 @@ def scrape():
 
     print("before wd")
 
-    wd = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=options)
-
+    wd = webdriver.Chrome(executable_path=os.environ['GOOGLE_CHROME_SHIM'], chrome_options=options)
+    
     print("getting ready to visit the first url")
     wd.get('https://mars.nasa.gov/news/')
 
