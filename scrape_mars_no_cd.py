@@ -30,11 +30,8 @@ def scrape():
     chrome_options.add_argument('--no-sandbox')
     chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
     print("chrome_bin1: ", chrome_bin)
-    opts = ChromeOptions()
-    opts.binary_location = chrome_bin
     
-    
-    #executable_path = {'executable_path': 'chromedriver'}
+     
     
     executable_path = {'executable_path': chrome_bin}
     browser = Browser('chrome', **executable_path, options=chrome_options)
