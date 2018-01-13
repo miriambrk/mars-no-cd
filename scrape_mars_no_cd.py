@@ -7,7 +7,38 @@ from bs4 import BeautifulSoup as bs
 import requests
 import os
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+
 def scrape():
+    
+    
+    
+options = webdriver.ChromeOptions()
+options.binary_location = os.environ['GOOGLE_CHROME_BIN']
+
+options.add_argument('--headless')
+
+
+print("before wd")
+
+wd = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=options)
+
+print("getting ready to visit the first url")
+wd.get('https://mars.nasa.gov/news/')
+
+# Wait for the dynamically loaded elements to show up
+WebDriverWait(wd, 1).until(
+    EC.visibility_of_element_located((By.CLASS_NAME, "content_title")))
+
+# And grab the page HTML source
+response = wd.page_source
+wd.quit()
+
+soup = bs(response, "lxml")
+print(soup.prettify())
 
     
     
@@ -24,17 +55,17 @@ def scrape():
 #     self.selenium = webdriver.Chrome(executable_path="chromedriver", chrome_options=opts)
 
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
-    print("chrome_bin1: ", chrome_bin)
+#     chrome_options = webdriver.ChromeOptions()
+#     chrome_options.add_argument('--headless')
+#     chrome_options.add_argument('--disable-gpu')
+#     chrome_options.add_argument('--no-sandbox')
+#     chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
+#     print("chrome_bin1: ", chrome_bin)
     
      
     
-    executable_path = {'executable_path': chrome_bin}
-    browser = Browser('chrome', **executable_path, options=chrome_options)
+#     executable_path = {'executable_path': chrome_bin}
+#     browser = Browser('chrome', **executable_path, options=chrome_options)
     
      
     #executable_path = {"executable_path": chrome_bin}
@@ -50,14 +81,14 @@ def scrape():
     # PART 1 - NASA Mars News
 
     # URL of NASA Mars News website
-    url = 'https://mars.nasa.gov/news/'
+    #url = 'https://mars.nasa.gov/news/'
     
-    print("getting ready to visit the first url")
+    
 
-    browser.visit(url)
+    #browser.visit(url)
 
-    response = browser.html
-    soup = bs(response, "lxml")
+    #response = browser.html
+    #soup = bs(response, "lxml")
 
     # extract the latest News Title and Paragragh Text.
 
